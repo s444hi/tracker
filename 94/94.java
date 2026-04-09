@@ -14,14 +14,21 @@
  * }
  */
 class Solution {
-    public TreeNode invertTree(TreeNode root) {
-        if(root!=null){
-            TreeNode left=invertTree(root.left);
-            TreeNode right=invertTree(root.right);
-            root.left=right;
-            root.right=left;
-            return root;
+    public List<Integer> inorderTraversal(TreeNode root) 
+    {
+        if(root == null)
+        {
+            return new ArrayList<>();
         }
-        return root;
+
+        List<Integer> list = new ArrayList<>();
+
+        list.addAll(inorderTraversal(root.left));
+
+        list.add(root.val);
+
+        list.addAll(inorderTraversal(root.right));
+
+        return list;
     }
 }
